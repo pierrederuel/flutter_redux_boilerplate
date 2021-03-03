@@ -21,7 +21,7 @@ class MainDrawer extends StatelessWidget {
             ),
             child: new Center(
               child: new FlutterLogo(
-                colors: colorStyles['primary'],
+                textColor: colorStyles['primary'],
                 size: 54.0,
               ),
             ),

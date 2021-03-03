@@ -1,16 +1,14 @@
+import 'package:flutter_redux_boilerplate/middleware/middleware.dart';
+import 'package:flutter_redux_boilerplate/models/app_state.dart';
+import 'package:flutter_redux_boilerplate/reducers/app_reducer.dart';
 import 'package:redux/redux.dart';
 
-import 'package:flutter_redux_boilerplate/reducers/app_reducer.dart';
-import 'package:flutter_redux_boilerplate/models/app_state.dart';
-import 'package:flutter_redux_boilerplate/middleware/middleware.dart';
+Future<Store<AppState>> createStore() async {
+  final initialState = await persistor.load();
 
-Store<AppState> createStore() { 
-    Store<AppState> store = new Store(
-        appReducer,
-        initialState: new AppState(),
-        middleware: createMiddleware(),
-    );
-    persistor.start(store);
-
-    return store;
+  return new Store(
+    appReducer,
+    initialState: initialState ?? AppState(),
+    middleware: createMiddleware(),
+  );
 }
